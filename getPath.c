@@ -22,6 +22,7 @@ char *_getenv(const char *name)
 				return (str);
 			}
 		}
+		i++;
 	}
 	return (NULL);
 }

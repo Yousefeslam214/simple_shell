@@ -26,6 +26,7 @@ void run(char **argv);
 
 /*START getPath*/
 char *_get_path();
+char *_getenv(const char *name);
 /*END getPath*/
 
 
