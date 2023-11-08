@@ -4,13 +4,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
 #include <string.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <errno.h>
+#include <stddef.h>
+#include <sys/stat.h>
+#include <signal.h>
+
+/*Start helpFun*/
+int _putchar(char c);
+void _print(char *str);
+/*End helpFun*/
+
+
 /*
 typedef struct format
 {
-	char ch;
+	char *word;
 	int (*f)(va_list);
 } format_t;
 */

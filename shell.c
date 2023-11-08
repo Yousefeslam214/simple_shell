@@ -13,10 +13,29 @@ int main(void)
 
 	while (1)
 	{
-		write(1, "#cisfun$ ", 10);
+		if(isatty(STDIN_FILENO))
+			write(1, "#cisfun$ ", 10);
 		getline(&buf, &bufSiz, stdin);
 		token = strtok(buf, "\t\n");
 		array = (char **)malloc(sizeof(char *) * 1024);
+		/*
+		format_t fun[] = {
+			{'c', print_char}, {'s', print_string},
+			{'%', print_mod}, {'i', print_int},
+			{'d', print_int}, {'r', reverse_string},
+			{'x', print_hex}, {'X', print_Hex},
+			{'o', print_octal}, {'u', print_unsigned},
+			{'b', print_binary}, {'p', print_address},
+			{'S', print_ex_str}
+		};
+		*/
+		/*
+		while (j < 13)
+		{
+			if (token = fun[j].word)
+				fun[j].f(ap); // run function
+		}
+		*/
 		while (token)
 		{
 			array[i] = token;
@@ -30,6 +49,7 @@ int main(void)
 			return(0);
 		}
 		/*array[i] = NULL;*/
+
 		child_pid = fork();
 		if (child_pid == 0)
 		{
