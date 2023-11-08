@@ -1,5 +1,5 @@
-#ifndef SHELL_H
-#define SHELL_H
+#ifndef MAIN_H
+#define MAIN_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,10 +12,22 @@
 #include <sys/stat.h>
 #include <signal.h>
 
+extern char **environ;
+
+
+
 /*Start helpFun*/
 int _putchar(char c);
 void _print(char *str);
 /*End helpFun*/
+
+
+void run(char **argv);
+
+/*START getPath*/
+char *_get_path();
+/*END getPath*/
+
 
 
 /*
