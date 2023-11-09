@@ -1,25 +1,23 @@
 #include "shell.h"
 
+/*i use char ** to make like array*/
 void run(char **argv)
 {
-    pid_t child_pid;
-    char **array;
-    array = (char **)malloc(sizeof(char *) * 1024);
-    int status;
-
-    if (!argv || !argv[0])
+	int d, stat;
+	if (!argv || !argv[0])
 		return;
-    child_pid = fork();
-		if (child_pid == 0)
-		{
-			if (execve(array[0], array, NULL) == -1)
-				perror("error");
-		}
-		else
-		{
-			wait(&status);
-		}
-        
-    free(array);
+	d = fork();
+	if (d == -1)
+		perror("");
+	if (d == 0)
+	{
+		execve(argv[0], argv, environ);
+			perror(argv[0]);
+		exit(EXIT_FAILURE);
+	}
+	wait(&stat);
+	printf("yousef");
 }
+
+
 

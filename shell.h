@@ -13,6 +13,7 @@
 #include <signal.h>
 
 extern char **environ;
+char **splitstring(char *str, const char *delim);
 
 
 
