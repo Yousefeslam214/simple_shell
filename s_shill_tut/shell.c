@@ -4,7 +4,6 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <string.h>
-#include "shell.h"
 
 int main(void)
 {
@@ -35,8 +34,18 @@ int main(void)
 			return(0);
 		}
 		/*array[i] = NULL;*/
-		
-		run(array);/*  /bin/ls   */
+		/*
+		child_pid = fork();
+		if (child_pid == 0)
+		{
+			if (execve(array[0], array, NULL) == -1)
+				perror("error");
+		}
+		else
+		{
+			wait(&status);
+		}
+		*/
 	i = 0;
 	free(array);
 	/*free(buf);*/
