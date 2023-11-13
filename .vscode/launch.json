@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/yousef/Desktop/programing/s_shill_tut",
-      "program": "/home/yousef/Desktop/programing/s_shill_tut/build/Debug/outDebug",
+      "cwd": "/home/yousef/Desktop/programing/simple_shell",
+      "program": "/home/yousef/Desktop/programing/simple_shell/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

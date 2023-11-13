@@ -11,11 +11,26 @@
 #include <stddef.h>
 #include <sys/stat.h>
 #include <signal.h>
+#include <stdbool.h>
 
 extern char **environ;
+
+
+
+typedef struct list_t
+{
+	char *d;
+	struct list_t *t;
+} list_t;
+
+
+typedef struct command
+{
+	char *word;
+	void (*func)(char **);
+} command;
+
 char **splitstring(char *str, const char *delim);
-
-
 
 /*Start helpFun*/
 int _putchar(char c);
@@ -33,13 +48,6 @@ char *_getenv(const char *name);
 
 
 /*
-typedef struct format
-{
-	char *word;
-	int (*f)(va_list);
-} format_t;
-*/
-/*
 format_t fun[] = {{'c', print_char}, {'s', print_string},
 		{'%', print_mod}, {'i', print_int},
 		{'d', print_int}, {'r', reverse_string},
@@ -49,6 +57,12 @@ format_t fun[] = {{'c', print_char}, {'s', print_string},
 		{'S', print_ex_str}
 	};
 */
+
+void(*commands (char **argv))(char **argv);
+void _exitt(char **argv);
+void _env(char **argv __attribute__ ((unused)));
+void _setenv(char **argv);
+void _unsetenv(char **argv);
 
 
 #endif

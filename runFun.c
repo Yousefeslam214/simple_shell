@@ -15,11 +15,13 @@ void run(char **argv)
 		return;
 	child_pid = fork();
 	if (child_pid == -1)
-		perror("");
+		perror(";;;;;;");
 	else if (child_pid == 0)
 	{
 		if (execve(argv[0], argv, NULL) == -1)
+		{
 			perror(argv[0]);
+		}
 		exit(EXIT_FAILURE);
 	}
 	else

@@ -1,5 +1,3 @@
-#include "shell.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -10,52 +8,61 @@
 #include <stddef.h>
 #include <sys/stat.h>
 #include <signal.h>
-// /*
+#include <stdbool.h>
+#include "shell.h"
 
-// int main(void)
-// {
+bool _isatty(void)
+{
+	if (isatty(0))
+	{
+		write(1, "#ghjkhl$ ", 10);
+		return (true);
+	}
+	return (false);
+}
 
-// 	char *path = _getenv("PATH");
+int main(void)
+{
+	/*prompt*/
+	size_t bufSiz = 0;
+	char *buf = NULL;
+	char *token;
+	char **array;
+	int i = 0;
+	/*pid_t child_pid;
+	int status;
+	int len = 0;*/
 
-//     printf("PATH: %s\n", path);
-// 	char *argv[] = {"ls", "-la", NULL};
-
-// 	run(argv);
-
-
-// 	/*prompt*/
-	
-// 	size_t bufSiz = 0;
-// 	char *buf = NULL;
-// 	char *token;
-// 	char **array;
-// 	int i = 0;
-//     array = (char **)malloc(sizeof(char *) * 1024);
-
-// 	while (1)
-// 	{
-// 		if(isatty(STDIN_FILENO))
-// 			_print("#cisfun$ ");
-// 		getline(&buf, &bufSiz, stdin);
-// 		token = strtok(buf, " \n");
-// 		while (token)
-// 		{
-// 			array[i] = token;
-// 			token = strtok(NULL, "\t\n");
-// 			i++;
-// 			array[i] = token;
-// 			run((array));
-// 		}
-// 		run(array);
-
-// 		/*array[i] = NULL;*/
-
+	while (1)
+	{
+		_isatty();
+		if (getline(&buf, &bufSiz, stdin) == -1)
+		{
+			if (_isatty())
+				printf("\n");
+			break;
+		}
+		token = strtok(buf, "\t\n");
+		array = (char **)malloc(sizeof(char *) * 1024);
+		while (token)
+		{
+			array[i] = token;
+			token = strtok(NULL, "\t\n");
+			i++;
+			array[i] = token;
+		}
+		/*if(*(array[0]) == *("exit"))
+		{
+			return(0);
+		}*/
+		/*array[i] = NULL;*/
+		if(!token || !token[0])
+			run(array);
 		
-// 	/*free(buf);*/
-	
-// 	i = 0;
-// 	}
-// 	return (0);
-	
-// }
-// */
+		/*run(array);*//*  /bin/ls   */
+	i = 0;
+	free(array);
+	/*free(buf);*/
+	}
+	return (0);
+}
