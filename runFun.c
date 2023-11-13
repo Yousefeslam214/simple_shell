@@ -10,11 +10,11 @@ void run(char **argv)
 
 	if (strcmp(argv[0], "exit") == 0)
 	{
-		return; // Exit the shell
+		return;
 	}
 	else if (strcmp(argv[0], "ls") == 0)
 	{
-		// If "ls" is the command, execute it
+
 		child_pid = fork();
 		if (child_pid == -1)
 		{
@@ -22,7 +22,7 @@ void run(char **argv)
 		}
 		else if (child_pid == 0)
 		{
-			// Child process
+
 			if (execvp("ls", argv) == -1)
 			{
 				perror("ls");
@@ -43,7 +43,7 @@ void run(char **argv)
 	}
 	else if (child_pid == 0)
 	{
-		// Execute other commands
+
 		if (execve(argv[0], argv, NULL) == -1)
 		{
 			perror(argv[0]);
