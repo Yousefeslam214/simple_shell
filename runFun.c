@@ -1,23 +1,49 @@
 #include "shell.h"
 
-/*i use char ** to make like array*/
 void run(char **argv)
 {
 	int stat;
 	pid_t child_pid;
 	
-	if(*(argv[0]) == *("exit"))
-	{
-		return;
-	}
-	/*argv[0] = _getenv("PATH");*/
 	if (!argv || !argv[0])
 		return;
+
+	if (strcmp(argv[0], "exit") == 0)
+	{
+		return; // Exit the shell
+	}
+	else if (strcmp(argv[0], "ls") == 0)
+	{
+		// If "ls" is the command, execute it
+		child_pid = fork();
+		if (child_pid == -1)
+		{
+			perror("fork");
+		}
+		else if (child_pid == 0)
+		{
+			// Child process
+			if (execvp("ls", argv) == -1)
+			{
+				perror("ls");
+			}
+			exit(EXIT_FAILURE);
+		}
+		else
+		{
+			wait(&stat);
+		}
+		return;
+	}
+
 	child_pid = fork();
 	if (child_pid == -1)
-		perror(";;;;;;");
+	{
+		perror("");
+	}
 	else if (child_pid == 0)
 	{
+		// Execute other commands
 		if (execve(argv[0], argv, NULL) == -1)
 		{
 			perror(argv[0]);
@@ -28,8 +54,4 @@ void run(char **argv)
 	{
 		wait(&stat);
 	}
-	
 }
-
-
-
