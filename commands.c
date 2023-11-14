@@ -36,8 +36,10 @@ void(*commands (char **argv))(char **argv)
 		{
 			for(j = 0; argv[0][j]; j++)
 			{
-				if (cod[i].word[j] != (argv[0][j]))
+				if (cod[i].word[j] != (argv[0][j])){
 					break;
+					return(0);
+				}
 			}
 			if (!argv[0][j] && !cod[i].word[j])
 				return(cod[i].func);
