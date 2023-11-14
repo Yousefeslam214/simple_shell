@@ -13,7 +13,12 @@ void run(char **argv)
 	{
 		return;
 	}
-	else if (strcmp(argv[0], "ls") == 0)
+	if (strcmp(argv[0], "") == 0)
+	{
+		return;
+	}
+
+	if (strcmp(argv[0], "ls") == 0)
 	{
 
 		child_pid = fork();
@@ -36,7 +41,6 @@ void run(char **argv)
 		}
 		return;
 	}
-
 	child_pid = fork();
 	if (child_pid == -1)
 	{
@@ -45,7 +49,7 @@ void run(char **argv)
 	else if (child_pid == 0)
 	{
 
-		if (execve(argv[0], argv, NULL) == -1)
+		if (execve(argv[0], argv, environ) == -1)
 		{
 			perror(argv[0]);
 		}

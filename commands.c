@@ -2,19 +2,19 @@
 
 void _exitt(char **argv)
 {
-	printf("ayo");
+	printf("ayo\n");
 }
 void _env(char **argv __attribute__ ((unused)))
 {
-	printf("ayo");
+	printf("ayo\n");
 }
 void _setenv(char **argv)
 {
-	printf("ayo");
+	printf("ayo\n");
 }
 void _unsetenv(char **argv)
 {
-	printf("ayo");
+	printf("ayo\n");
 }
 
 
@@ -32,14 +32,16 @@ void(*commands (char **argv))(char **argv)
 	for (i = 0; cod[i].word; i++)
 	{
 		j = 0;
-		if (cod[i].word[j] == argv[0][j]) /*argv[0][j] why not argv [0] only*/
+		if (cod[i].word[j] == argv[0][j])
 		{
 			for(j = 0; argv[0][j]; j++)
 			{
-				if (cod[i].word[j] != argv[0][j])
+				if (cod[i].word[j] != (argv[0][j])){
 					break;
+					return(0);
+				}
 			}
-			if (!argv[0][1])
+			if (!argv[0][j] && !cod[i].word[j])
 				return(cod[i].func);
 		}
 	}

@@ -11,6 +11,7 @@
 #include <stdbool.h>
 #include "shell.h"
 
+
 bool _isatty(void)
 {
 	if (isatty(0))
@@ -26,16 +27,21 @@ int main(void)
 	/*prompt*/
 	size_t bufSiz = 0;
 	char *buf = NULL;
-	char *token;
+	char *token, *pathnameoffile, *path;
 	char **array;
 	int i = 0;
 	/*pid_t child_pid;
 	int status;
 	int len = 0;*/
+	list_path *head = '\0';
+	void (*fun)(char **);
+
+
 
 	while (1)
 	{
 		_isatty();
+		
 		if (getline(&buf, &bufSiz, stdin) == -1)
 		{
 			if (_isatty())
@@ -56,13 +62,34 @@ int main(void)
 			return(0);
 		}*/
 		/*array[i] = NULL;*/
-		if(!token || !token[0])
+		if(!array || !array[0])
 			run(array);
-		
-		/*run(array);*//*  /bin/ls   */
+		else
+		{
+			path = _getenv("PATH");
+			head = linkpath(path);
+			pathnameoffile = _which((array[0]), head);
+			fun = commands(array);
+			if (fun)
+			{
+				fun(array);
+			}
+			else if (!pathnameoffile)
+				run(array);
+			else if (pathnameoffile)
+			{
+				/*free(array[0]);*/
+				array[0] = pathnameoffile;
+				run(array);
+			}
+		}
 	i = 0;
-	free(array);
+	/*free(array);*/
 	/*free(buf);*/
+	/*
+	free_list(head);
+	freearv(arv);
+	*/
 	}
 	return (0);
 }
