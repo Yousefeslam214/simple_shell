@@ -1,12 +1,34 @@
 #include "shell.h"
 
-void _exitt(char **argv)
+void _exitt(char **arv)
 {
-	printf("ayo\n");
+    int exit_status = 0;
+
+    if (arv[1]) {
+        exit_status = atoi(arv[1]);
+        if (exit_status < 0) {
+            exit_status = 2;
+        }
+        free(arv);
+        exit(exit_status);
+    }
+
+    for (int i = 0; arv[i]; i++) {
+        free(arv[i]);
+    }
+    free(arv);
+
+    exit(0);
 }
-void _env(char **argv __attribute__ ((unused)))
+void _env(char **arv __attribute__ ((unused)))
 {
-	printf("ayo\n");
+    char **env_var = environ;
+
+    while (*env_var) {
+        puts(*env_var);
+    	puts("\n");
+        env_var++;
+    }
 }
 void _setenv(char **argv)
 {

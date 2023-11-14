@@ -61,7 +61,7 @@ int main(void)
 		{
 			return(0);
 		}*/
-		/*array[i] = NULL;*/
+		
 			run(array);
 		if(!array || !array[0])
 			run(array);
@@ -85,12 +85,12 @@ int main(void)
 			}
 		}
 	i = 0;
-	/*free(array);*/
-	/*free(buf);*/
-	/*
-	free_list(head);
-	freearv(arv);
-	*/
+	//free(array);
+	free(buf);
+	
+	//free_list(head);
+	//freearv(argv);
+	
 	}
 	return (0);
 }
