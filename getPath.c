@@ -38,7 +38,6 @@ list_path *linkpath(char *path)
 		head = add_node_to_end(&head, token);
 		token = strtok(NULL, ":");
 	}
-	printf("getPath : head  %s",head->directory);
 	return (head);
 }
 
@@ -88,14 +87,44 @@ char *_which(char *filename, list_path *head)
 	while (tmp)
 	{
 
-		string = concat_all(tmp->dir, "/", filename);
+		string = concat_all(tmp->directory, "/", filename);
 		if (stat(string, &st) == 0)
 		{
 			return (string);
 		}
-		free(string);
+		/*free(string);*/
 		tmp = tmp->path;
 	}
 
 	return (NULL);
 }
+char *concat_all(char *name, char *sep, char *value)
+{
+	char *result;
+	int l1, l2, l3, i, k;
+
+	l1 = strlen(name);
+	l2 = strlen(sep);
+	l3 = strlen(value);
+
+	result = malloc(l1 + l2 + l3 + 1);
+	if (!result)
+		return (NULL);
+
+	for (i = 0; name[i]; i++)
+		result[i] = name[i];
+	k = i;
+
+	for (i = 0; sep[i]; i++)
+		result[k + i] = sep[i];
+	k = k + i;
+
+	for (i = 0; value[i]; i++)
+		result[k + i] = value[i];
+	k = k + i;
+
+	result[k] = '\0';
+
+	return (result);
+}
+

@@ -12,7 +12,12 @@ void run(char **argv)
 	{
 		return;
 	}
-	else if (strcmp(argv[0], "ls") == 0)
+	if (strcmp(argv[0], "") == 0)
+	{
+		return;
+	}
+
+	if (strcmp(argv[0], "ls") == 0)
 	{
 
 		child_pid = fork();
