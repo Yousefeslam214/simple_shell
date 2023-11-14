@@ -45,6 +45,3 @@ void(*commands (char **argv))(char **argv)
 	}
 	return (0);
 }	
-
-
-

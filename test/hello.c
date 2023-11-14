@@ -1,4 +1,5 @@
-#include "shell.h"
+#include "tst.h"
+
 
 void run(char **argv) {
     int stat;
