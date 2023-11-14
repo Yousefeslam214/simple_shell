@@ -12,7 +12,9 @@ void run(char **argv) {
         child_pid = fork();
         if (child_pid == -1) {
             perror("fork");
-        } else if (child_pid == 0) {
+        }
+        else if (child_pid == 0)
+        {
             // Child process
             if (argv[1] == NULL) {
                 execlp("ls", "ls", (char *)NULL);

@@ -34,6 +34,7 @@ void run(char **argv)
 			{
 				perror("ls");
 			}
+			
 			exit(EXIT_FAILURE);
 		}
 		else

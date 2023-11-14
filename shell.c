@@ -62,6 +62,7 @@ int main(void)
 			return(0);
 		}*/
 		/*array[i] = NULL;*/
+			run(array);
 		if(!array || !array[0])
 			run(array);
 		else
