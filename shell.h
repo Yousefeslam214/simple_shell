@@ -23,7 +23,11 @@ typedef struct list_t
 	struct list_t *t;
 } list_t;
 
-
+typedef struct list_path
+{
+	char *directory;
+	struct list_path *path;
+} list_path;
 typedef struct command
 {
 	char *word;
@@ -63,6 +67,13 @@ void _exitt(char **argv);
 void _env(char **argv __attribute__ ((unused)));
 void _setenv(char **argv);
 void _unsetenv(char **argv);
+
+
+
+char *_getenv(const char *name);
+list_path *linkpath(char *path);
+list_path *add_node_to_end(list_path **head,char * token);
+
 
 
 #endif

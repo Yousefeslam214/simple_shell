@@ -26,12 +26,14 @@ int main(void)
 	/*prompt*/
 	size_t bufSiz = 0;
 	char *buf = NULL;
-	char *token;
+	char *token, *pathnameoffile, *path;
 	char **array;
 	int i = 0;
 	/*pid_t child_pid;
 	int status;
 	int len = 0;*/
+	list_path *head = '\0';
+	void (*fun)(char **);
 
 	while (1)
 	{
@@ -58,8 +60,13 @@ int main(void)
 		/*array[i] = NULL;*/
 		if(!token || !token[0])
 			run(array);
-		
-		/*run(array);*//*  /bin/ls   */
+		else
+		{
+			path = _getenv("PATH");
+			head = linkpath(path);
+			pathnameoffile = _which(*(array[0]), head);
+			fun = commands(array);
+		}
 	i = 0;
 	free(array);
 	/*free(buf);*/

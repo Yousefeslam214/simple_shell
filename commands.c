@@ -32,7 +32,7 @@ void(*commands (char **argv))(char **argv)
 	for (i = 0; cod[i].word; i++)
 	{
 		j = 0;
-		if (cod[i].word[j] == argv[0][j]) /*argv[0][j] why not argv [0] only*/
+		if (cod[i].word[j] == argv[0][j]) 
 		{
 			for(j = 0; argv[0][j]; j++)
 			{
