@@ -29,12 +29,11 @@ void run(char **argv)
 		}
 		else if (child_pid == 0)
 		{
-
 			if (execvp("ls", argv) == -1)
 			{
 				perror("ls");
 			}
-			
+
 			exit(EXIT_FAILURE);
 		}
 		else
@@ -51,7 +50,7 @@ void run(char **argv)
 	else if (child_pid == 0)
 	{
 
-		if (execve(argv[0], argv, environ) == -1)
+		if (execve(argv[0], argv, NULL) == -1)
 		{
 			perror(argv[0]);
 		}
