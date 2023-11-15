@@ -88,11 +88,11 @@ int main(void)
 			}
 		}
 	i = 0;
-	/*
-	//free(array);
-	//free(buf);
-	//free_list(head);
-	//freearv(argv);*/
 	}
+	free(array);
+	/*
+	//free_list(head);
+	*/
+	free(buf);
 	return (0);
 }
