@@ -2,7 +2,7 @@
 
 void _exitt(char **arv)
 {
-    int exit_status = 0;
+    int exit_status = 0,i = 0;
 
     if (arv[1]) {
         exit_status = atoi(arv[1]);
@@ -13,9 +13,15 @@ void _exitt(char **arv)
         exit(exit_status);
     }
 
-    for (int i = 0; arv[i]; i++) {
+    /*for (int i = 0; arv[i]; i++) {
         free(arv[i]);
-    }
+    }*/
+	while (arv[i])
+	{
+		free(arv[i]);
+		i++;
+	}
+	
     free(arv);
 
     exit(0);
@@ -26,16 +32,18 @@ void _env(char **arv __attribute__ ((unused)))
 
     while (*env_var) {
         puts(*env_var);
-    	//puts("\n");
+    	/*puts("\n");*/
         env_var++;
     }
 }
 void _setenv(char **argv)
 {
-	printf("ayo\n");
+	*argv = "yousef";
+	printf("argv\n");
 }
 void _unsetenv(char **argv)
 {
+	*argv = "yousef";
 	printf("ayo\n");
 }
 

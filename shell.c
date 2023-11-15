@@ -43,21 +43,18 @@ int main(void)
 	char *token, *pathnameoffile, *path;
 	char **array;
 	int i = 0;
-	/*pid_t child_pid;
-	int status;
-	int len = 0;*/
 	list_path *head = '\0';
 	void (*fun)(char **);
 	int length = 0;
 	while (length != EOF)
 	{
 		_isatty();
-		// if (getline(&buf, &bufSiz, stdin) == -1)
-		// {
-		// 	if (_isatty())
-		// 		printf("\n");
-		// 	break;
-		// }
+		/*if (getline(&buf, &bufSiz, stdin) == -1)
+		{
+			if (_isatty())
+				printf("\n");
+			break;
+		}*/
 		length = getline(&buf, &bufSiz, stdin);
 		endoffile(length, buf);
 		token = strtok(buf, " \n");
@@ -91,10 +88,11 @@ int main(void)
 			}
 		}
 	i = 0;
+	/*
 	//free(array);
 	//free(buf);
 	//free_list(head);
-	//freearv(argv);
+	//freearv(argv);*/
 	}
 	return (0);
 }
