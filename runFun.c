@@ -37,7 +37,7 @@ void run(char **argv)
 	else if (child_pid == 0)
 	{
 
-		if (execve(argv[0], argv, NULL) == -1)
+		if (execve(argv[0], argv, environ) == -1)
 		{
 			perror(argv[0]);
 		}
