@@ -61,12 +61,7 @@ int main(void)
 		{
 			return(0);
 		}*/
-<<<<<<< HEAD
-		
-			run(array);
-=======
 		/*array[i] = NULL;*/
->>>>>>> 1daa7e14d52c3a5b6d5a5375a88f9f5552810452
 		if(!array || !array[0])
 			run(array);
 		else
@@ -89,7 +84,7 @@ int main(void)
 			}
 		}
 	i = 0;
-	//free(array);
+	free(array);
 	free(buf);
 	
 	//free_list(head);
