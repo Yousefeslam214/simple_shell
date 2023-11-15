@@ -4,24 +4,11 @@ void run(char **argv)
 {
 	int stat;
 	pid_t child_pid;
-	
-	
-	
+
 	if (!argv || !argv[0])
 		return;
-
-	if (strcmp(argv[0], "exit") == 0)
-	{
-		return;
-	}
-	if (strcmp(argv[0], "") == 0)
-	{
-		return;
-	}
-
 	if (strcmp(argv[0], "ls") == 0)
 	{
-
 		child_pid = fork();
 		if (child_pid == -1)
 		{

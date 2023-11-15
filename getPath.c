@@ -48,17 +48,8 @@ list_path *add_node_to_end(list_path **head,char * token)
 	if (!token || !new_path)
 		return (NULL);
 	new_path->directory = strdup(token);
-
-
-
-
-
 	/*new_path->path = '\0';*/
 	new_path->path = NULL;
-
-
-
-
 	if (!*head)
 		*head = new_path;
 	else

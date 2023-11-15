@@ -11,6 +11,20 @@
 #include <stdbool.h>
 #include "shell.h"
 
+void endoffile(int len, char *buf)
+{
+	(void)buf;
+	if (len == -1)
+	{
+		if (isatty(STDIN_FILENO))
+		{
+			putchar('\n');
+			free(buf);
+		}
+		exit(0);
+	}
+}
+
 
 bool _isatty(void)
 {
@@ -24,7 +38,6 @@ bool _isatty(void)
 
 int main(void)
 {
-	/*prompt*/
 	size_t bufSiz = 0;
 	char *buf = NULL;
 	char *token, *pathnameoffile, *path;
@@ -35,19 +48,18 @@ int main(void)
 	int len = 0;*/
 	list_path *head = '\0';
 	void (*fun)(char **);
-
-
-
-	while (1)
+	int length = 0;
+	while (length != EOF)
 	{
 		_isatty();
-		
-		if (getline(&buf, &bufSiz, stdin) == -1)
-		{
-			if (_isatty())
-				printf("\n");
-			break;
-		}
+		// if (getline(&buf, &bufSiz, stdin) == -1)
+		// {
+		// 	if (_isatty())
+		// 		printf("\n");
+		// 	break;
+		// }
+		length = getline(&buf, &bufSiz, stdin);
+		endoffile(length, buf);
 		token = strtok(buf, " \n");
 		array = (char **)malloc(sizeof(char *) * 1024);
 		while (token)
@@ -57,11 +69,6 @@ int main(void)
 			i++;
 			array[i] = token;
 		}
-		// /*if(*(array[0]) == *("exit"))
-		// {
-		// 	return(0);
-		// }*/
-		// /*array[i] = NULL;*/
 		if(!array || !array[0])
 			run(array);
 		else
@@ -86,10 +93,8 @@ int main(void)
 	i = 0;
 	//free(array);
 	//free(buf);
-	
 	//free_list(head);
 	//freearv(argv);
-	
 	}
 	return (0);
 }

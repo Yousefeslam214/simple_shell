@@ -41,6 +41,7 @@ int _putchar(char c);
 void _print(char *str);
 /*End helpFun*/
 
+void endoffile(int len, char *buf);
 
 void run(char **argv);
 
@@ -48,19 +49,6 @@ void run(char **argv);
 char *_get_path();
 char *_getenv(const char *name);
 /*END getPath*/
-
-
-
-/*
-format_t fun[] = {{'c', print_char}, {'s', print_string},
-		{'%', print_mod}, {'i', print_int},
-		{'d', print_int}, {'r', reverse_string},
-		{'x', print_hex}, {'X', print_Hex},
-		{'o', print_octal}, {'u', print_unsigned},
-		{'b', print_binary}, {'p', print_address},
-		{'S', print_ex_str}
-	};
-*/
 
 void(*commands (char **argv))(char **argv);
 void _exitt(char **argv);
