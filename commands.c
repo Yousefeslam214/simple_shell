@@ -26,7 +26,7 @@ void _env(char **arv __attribute__ ((unused)))
 
     while (*env_var) {
         puts(*env_var);
-    	puts("\n");
+    	//puts("\n");
         env_var++;
     }
 }

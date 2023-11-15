@@ -77,6 +77,8 @@ list_path *add_node_to_end(list_path **head,char * token);
 /*copy them to just try*/
 char *concat_all(char *name, char *sep, char *value);
 char *_which(char *filename, list_path *head);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+char **splitstring(char *str, const char *delim);
 
 
 #endif

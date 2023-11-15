@@ -48,20 +48,20 @@ int main(void)
 				printf("\n");
 			break;
 		}
-		token = strtok(buf, "\t\n");
+		token = strtok(buf, " \n");
 		array = (char **)malloc(sizeof(char *) * 1024);
 		while (token)
 		{
 			array[i] = token;
-			token = strtok(NULL, "\t\n");
+			token = strtok(NULL, " \n");
 			i++;
 			array[i] = token;
 		}
-		/*if(*(array[0]) == *("exit"))
-		{
-			return(0);
-		}*/
-		/*array[i] = NULL;*/
+		// /*if(*(array[0]) == *("exit"))
+		// {
+		// 	return(0);
+		// }*/
+		// /*array[i] = NULL;*/
 		if(!array || !array[0])
 			run(array);
 		else
@@ -84,8 +84,8 @@ int main(void)
 			}
 		}
 	i = 0;
-	free(array);
-	free(buf);
+	//free(array);
+	//free(buf);
 	
 	//free_list(head);
 	//freearv(argv);
