@@ -9,21 +9,15 @@ void _exitt(char **arv)
         if (exit_status < 0) {
             exit_status = 2;
         }
-        free(arv);
+        freearg(arv);
         exit(exit_status);
     }
-
-    /*for (int i = 0; arv[i]; i++) {
-        free(arv[i]);
-    }*/
 	while (arv[i])
 	{
 		free(arv[i]);
 		i++;
 	}
-	
     free(arv);
-
     exit(0);
 }
 void _env(char **arv __attribute__ ((unused)))

@@ -1,14 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <sys/wait.h>
-#include <sys/types.h>
-#include <errno.h>
-#include <stddef.h>
-#include <sys/stat.h>
-#include <signal.h>
-#include <stdbool.h>
 #include "shell.h"
 
 void endoffile(int len, char *buf)
@@ -111,10 +100,8 @@ int main(void)
 		}
 	i = 0;
 	}
-	free(array);
-	/*
-	//free_list(head);
-	*/
+	freearg(array);
+	free_list(head);
 	free(buf);
 	return (0);
 }

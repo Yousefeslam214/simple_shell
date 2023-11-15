@@ -56,6 +56,9 @@ void _env(char **argv __attribute__ ((unused)));
 void _setenv(char **argv);
 void _unsetenv(char **argv);
 
+void freearg(char ** argv);
+void free_list(list_path *head);
+
 
 
 char *_getenv(const char *name);

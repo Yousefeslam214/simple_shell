@@ -96,3 +96,28 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	}
 	return (new);
 }
+
+
+void freearg(char ** argv)
+{
+    int i = 0;
+    while (argv[i])
+    {
+        free(argv[i]);
+    }
+    free(argv);
+}
+
+
+void free_list(list_path *head)
+{
+    list_path *stor;
+
+    while (head)
+    {
+        stor =  head->path;
+        free(head->directory);
+        free(head);
+        head = stor;
+    }
+}
