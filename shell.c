@@ -36,6 +36,28 @@ bool _isatty(void)
 	return (false);
 }
 
+
+
+
+
+
+/*
+
+ 
+to run this program
+
+gcc *.c -Wall -Werror -Wextra -pedantic -std=gnu89 -o shell
+gcc *.c -Wall -Werror -Wextra -pedantic -std=gnu89 -o hsh
+
+
+*/
+
+
+
+
+
+
+
 int main(void)
 {
 	size_t bufSiz = 0;
