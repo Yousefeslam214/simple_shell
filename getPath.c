@@ -4,8 +4,9 @@ char *_getenv(const char *name)
 {
 	int i = 0,j = 0;
 	char *str;
-	if(!name)
-		return (NULL);
+	if(!name){
+		return (NULL);}
+
 	while (environ[i])
 	{
 		if(name[j] == environ[i][j])
