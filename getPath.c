@@ -127,8 +127,11 @@ char *concat_all(char *name, char *sep, char *value)
 
 	result[k] = '\0';
 	free(name);
-	free(sep);
 	free(value);
+	/*
+	free(sep);
+	
+	*/
 	return (result);
 }
 
