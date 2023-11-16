@@ -50,13 +50,10 @@ gcc *.c -Wall -Werror -Wextra -pedantic -std=gnu89 -o hsh
 int main(void)
 {
 	size_t bufSiz = 0;
-	char *buf = NULL;
-	char *token, *pathnameoffile, *path;
-	char **array;
-	int i = 0;
+	char *token, *pathnameoffile, *path , *buf = NULL, **array;
+	int i = 0, length = 0;
 	list_path *head = '\0';
 	void (*fun)(char **);
-	int length = 0;
 	while (length != EOF)
 	{
 		_isatty();
@@ -103,5 +100,9 @@ int main(void)
 	freearg(array);
 	free_list(head);
 	free(buf);
+	
+	free(token);
+	free(pathnameoffile);
+	
 	return (0);
 }

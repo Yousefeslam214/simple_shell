@@ -34,7 +34,6 @@ typedef struct command
 	void (*func)(char **);
 } command;
 
-char **splitstring(char *str, const char *delim);
 
 /*Start helpFun*/
 int _putchar(char c);
@@ -50,20 +49,29 @@ char *_get_path();
 char *_getenv(const char *name);
 /*END getPath*/
 
+
 void(*commands (char **argv))(char **argv);
 void _exitt(char **argv);
 void _env(char **argv __attribute__ ((unused)));
 void _setenv(char **argv);
 void _unsetenv(char **argv);
 
+
+/*------free------*/
 void freearg(char ** argv);
 void free_list(list_path *head);
 
 
-
+/*--------getPath------*/
 char *_getenv(const char *name);
 list_path *linkpath(char *path);
 list_path *add_node_to_end(list_path **head,char * token);
+
+
+/*-------str-------*/
+char *_strdup(char *str);
+int _strlen(char *str);
+
 
 /*copy them to just try*/
 char *concat_all(char *name, char *sep, char *value);

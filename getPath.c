@@ -4,9 +4,10 @@ char *_getenv(const char *name)
 {
 	int i = 0,j = 0;
 	char *str;
-	if(!name){
-		return (NULL);}
-
+	if(!name)
+	{
+		return (NULL);
+	}
 	while (environ[i])
 	{
 		if(name[j] == environ[i][j])
@@ -30,7 +31,7 @@ char *_getenv(const char *name)
 
 list_path *linkpath(char *path)
 {
-	char *token, *copy_path = strdup(path);
+	char *token, *copy_path = _strdup(path);
 	list_path *head = NULL;
 
 	token = strtok(copy_path, ":");
@@ -39,16 +40,22 @@ list_path *linkpath(char *path)
 		head = add_node_to_end(&head, token);
 		token = strtok(NULL, ":");
 	}
+	free(copy_path);
+	free(token);
+	free(path);
 	return (head);
 }
 
-list_path *add_node_to_end(list_path **head,char * token)
+list_path *add_node_to_end(list_path **head ,char * token)
 {
 	list_path *new_path = (list_path *)malloc(sizeof(list_path));
 	list_path *temp;
 	if (!token || !new_path)
+	{
+		free_list(new_path);
 		return (NULL);
-	new_path->directory = strdup(token);
+	}
+	new_path->directory = _strdup(token);
 	/*new_path->path = '\0';*/
 	new_path->path = NULL;
 	if (!*head)
@@ -62,6 +69,7 @@ list_path *add_node_to_end(list_path **head,char * token)
 		}
 		temp->path = new_path;
 	}
+	free_list(new_path);
 	return (*head);
 }
 
@@ -84,10 +92,10 @@ char *_which(char *filename, list_path *head)
 		{
 			return (string);
 		}
-		/*free(string);*/
+		free(string);
 		tmp = tmp->path;
 	}
-
+	free_list(tmp);
 	return (NULL);
 }
 char *concat_all(char *name, char *sep, char *value)
@@ -95,14 +103,16 @@ char *concat_all(char *name, char *sep, char *value)
 	char *result;
 	int l1, l2, l3, i, k;
 
-	l1 = strlen(name);
-	l2 = strlen(sep);
-	l3 = strlen(value);
+	l1 = _strlen(name);
+	l2 = _strlen(sep);
+	l3 = _strlen(value);
 
-	result = malloc(l1 + l2 + l3 + 1);
+	result = (char *)malloc(l1 + l2 + l3 + 1);
 	if (!result)
+	{
+		free(result);
 		return (NULL);
-
+	}
 	for (i = 0; name[i]; i++)
 		result[i] = name[i];
 	k = i;
@@ -116,7 +126,9 @@ char *concat_all(char *name, char *sep, char *value)
 	k = k + i;
 
 	result[k] = '\0';
-
+	free(name);
+	free(sep);
+	free(value);
 	return (result);
 }
 
