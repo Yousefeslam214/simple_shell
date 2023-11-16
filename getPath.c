@@ -126,10 +126,10 @@ char *concat_all(char *name, char *sep, char *value)
 	k = k + i;
 
 	result[k] = '\0';
-	free(name);
-	free(value);
 	/*
+	free(name);
 	free(sep);
+	free(value);
 	
 	*/
 	return (result);
