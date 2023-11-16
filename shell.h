@@ -71,13 +71,12 @@ list_path *add_node_to_end(list_path **head,char * token);
 /*-------str-------*/
 char *_strdup(char *str);
 int _strlen(char *str);
-
+char **splitstring(char *string, const char *delim);
+char *concat_all(char *one, char *sep, char *two);
 
 /*copy them to just try*/
-char *concat_all(char *name, char *sep, char *value);
-char *_which(char *filename, list_path *head);
+char *_which(char *name, list_path *head);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-char **splitstring(char *str, const char *delim);
 
 
 #endif

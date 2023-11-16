@@ -81,29 +81,18 @@ list_path *add_node_to_end(list_path **head ,char * token)
 	return (*head);
 }
 
-
-
-
-
-char *_which(char *filename, list_path *head)
+char *_which(char *name, list_path *head)
 {
-	struct stat st;
-	char *string;
-
+	struct stat sta;
+	char *str;
 	list_path *tmp = head;
 
 	while (tmp)
 	{
-
-		string = concat_all(tmp->directory, "/", filename);
-		if (stat(string, &st) == 0)
-		{
-			return (string);
-		}
-		/*
-		
-		*/
-		free(string);
+		str = concat_all(tmp->directory, "/", name);
+		if (stat(str, &sta) == 0)
+			return (str);
+		free(str);
 		tmp = tmp->path;
 	}
 	/*
@@ -112,40 +101,5 @@ char *_which(char *filename, list_path *head)
 	free_list(tmp);
 	*/
 	return (NULL);
-}
-char *concat_all(char *name, char *sep, char *value)
-{
-	char *result;
-	int l1, l2, l3, i, k;
-
-	l1 = _strlen(name);
-	l2 = _strlen(sep);
-	l3 = _strlen(value);
-
-	result = (char *)malloc(l1 + l2 + l3 + 1);
-	if (!result)
-	{
-		free(result);
-		return (NULL);
-	}
-	for (i = 0; name[i]; i++)
-		result[i] = name[i];
-	k = i;
-
-	for (i = 0; sep[i]; i++)
-		result[k + i] = sep[i];
-	k = k + i;
-
-	for (i = 0; value[i]; i++)
-		result[k + i] = value[i];
-	k = k + i;
-
-	result[k] = '\0';
-	/*
-	free(name);
-	free(sep);
-	free(value);
-	*/
-	return (result);
 }
 

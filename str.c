@@ -2,7 +2,7 @@
 
 
 /**
- * _strdup - copy string
+ * _strdup - cpy string
  * @str: string
  * Return:newstring or NULL on fail
 */
@@ -41,42 +41,73 @@ int _strlen(char *str)
 }
 
 
-char **splitstring(char *str, const char *delim)
+char **splitstring(char *string, const char *delim)
 {
-	int i, wn;
-	char **array;
-	char *token;
-	char *copy;
+	char **array, *token, *cpy;
+	int i, j;
 
-	copy = malloc(strlen(str) + 1);
-	if (copy == NULL)
+	cpy = malloc(strlen(string) + 1);
+	if (cpy == NULL)
 	{
 		perror(_getenv("_"));
 		return (NULL);
 	}
 	i = 0;
-	while (str[i])
+	while (string[i])
 	{
-		copy[i] = str[i];
+		cpy[i] = string[i];
 		i++;
 	}
-	copy[i] = '\0';
+	cpy[i] = '\0';
 
-	token = strtok(copy, delim);
+	token = strtok(cpy, delim);
 	array = (char **)malloc(sizeof(char *) * 1024);
 	array[0] = _strdup(token);
 
 	i = 1;
-	wn = 3;
+	j = 3;
 	while (token)
 	{
 		token = strtok(NULL, delim);
 		array = (char **)malloc(sizeof(char *) * 1024);
 		array[i] = _strdup(token);
 		i++;
-		wn++;
+		j++;
 	}
-	free(copy);
+	free(cpy);
 	free(token);
 	return (array);
+}
+
+
+char *concat_all(char *one, char *sep, char *two)
+{
+	char *concated;
+	int l1, l2, l3, i, k;
+
+	l1 = _strlen(one);
+	l2 = _strlen(sep);
+	l3 = _strlen(two);
+
+	concated = (char *)malloc(l1 + l2 + l3 + 1);
+	if (!concated)
+	{
+		free(concated);
+		return (NULL);
+	}
+	for (i = 0; one[i]; i++)
+		concated[i] = one[i];
+	k = i;
+
+	for (i = 0; sep[i]; i++)
+		concated[k + i] = sep[i];
+	k = k + i;
+
+	for (i = 0; two[i]; i++)
+		concated[k + i] = two[i];
+	k = k + i;
+
+	concated[k] = '\0';
+
+	return (concated);
 }
