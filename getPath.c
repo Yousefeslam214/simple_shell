@@ -41,8 +41,11 @@ list_path *linkpath(char *path)
 		token = strtok(NULL, ":");
 	}
 	free(copy_path);
+	/*
+	don't do it
 	free(token);
 	free(path);
+	*/
 	return (head);
 }
 
@@ -52,7 +55,7 @@ list_path *add_node_to_end(list_path **head ,char * token)
 	list_path *temp;
 	if (!token || !new_path)
 	{
-		free_list(new_path);
+		/*free_list(new_path);*/
 		return (NULL);
 	}
 	new_path->directory = _strdup(token);
@@ -69,7 +72,12 @@ list_path *add_node_to_end(list_path **head ,char * token)
 		}
 		temp->path = new_path;
 	}
+	/*
+	don't do it
 	free_list(new_path);
+	free(token);
+	free_list(temp);
+	*/
 	return (*head);
 }
 
@@ -92,10 +100,17 @@ char *_which(char *filename, list_path *head)
 		{
 			return (string);
 		}
+		/*
+		
+		*/
 		free(string);
 		tmp = tmp->path;
 	}
+	/*
+	free_list(head);
+	don't do this
 	free_list(tmp);
+	*/
 	return (NULL);
 }
 char *concat_all(char *name, char *sep, char *value)
@@ -130,7 +145,6 @@ char *concat_all(char *name, char *sep, char *value)
 	free(name);
 	free(sep);
 	free(value);
-	
 	*/
 	return (result);
 }

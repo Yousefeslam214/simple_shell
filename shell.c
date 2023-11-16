@@ -99,10 +99,13 @@ int main(void)
 	}
 	freearg(array);
 	free_list(head);
-	free(buf);
 	
+	/*
+	free(buf);
 	free(token);
 	free(pathnameoffile);
 	
+	
+	*/
 	return (0);
 }
