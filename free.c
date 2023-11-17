@@ -1,46 +1,42 @@
 #include "shell.h"
 
 
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+void *_realloc(void *ptr, unsigned int oldsize, unsigned int newsize)
 {
-	char *new;
-	char *old;
-
+	char *news= NULL;
+	char *old = NULL;
 	unsigned int i;
 
 	if (ptr == NULL)
-		return (malloc(new_size));
-
-	if (new_size == old_size)
+		return (malloc(newsize));
+	if (newsize == oldsize)
 		return (ptr);
-
-	if (new_size == 0 && ptr != NULL)
+	if (newsize == 0 && ptr != NULL)
 	{
 		free(ptr);
 		return (NULL);
 	}
 
-	new = malloc(new_size);
+	news = (char *)malloc(newsize);
 	old = ptr;
-	if (new == NULL)
+	if (news == NULL)
 		return (NULL);
-
-	if (new_size > old_size)
+	if (newsize > oldsize)
 	{
-		for (i = 0; i < old_size; i++)
-			new[i] = old[i];
+		for (i = 0; i < oldsize; i++)
+			news[i] = old[i];
 		free(ptr);
-		for (i = old_size; i < new_size; i++)
-			new[i] = '\0';
+		for (i = oldsize; i < newsize; i++)
+			news[i] = '\0';
 	}
-	if (new_size < old_size)
+	if (newsize < oldsize)
 	{
-		for (i = 0; i < new_size; i++)
-			new[i] = old[i];
+		for (i = 0; i < newsize; i++)
+			news[i] = old[i];
 		free(ptr);
 	}
 	free(old);
-	return (new);
+	return (news);
 }
 
 

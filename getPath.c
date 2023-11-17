@@ -85,15 +85,15 @@ char *_which(char *name, list_path *head)
 {
 	struct stat sta;
 	char *str;
-	list_path *tmp = head;
+	list_path *temp = head;
 
-	while (tmp)
+	while (temp)
 	{
-		str = concat_all(tmp->directory, "/", name);
+		str = concat_all(temp->directory, "/", name);
 		if (stat(str, &sta) == 0)
 			return (str);
 		free(str);
-		tmp = tmp->path;
+		temp = temp->path;
 	}
 	/*
 	free_list(head);

@@ -14,7 +14,6 @@ void endoffile(int len, char *buf)
 	}
 }
 
-
 bool _isatty(void)
 {
 	if (isatty(0))
@@ -25,27 +24,12 @@ bool _isatty(void)
 	return (false);
 }
 
-
-
-
-
-
 /*
-
- 
 to run this program
 
 gcc *.c -Wall -Werror -Wextra -pedantic -std=gnu89 -o shell
 gcc *.c -Wall -Werror -Wextra -pedantic -std=gnu89 -o hsh
-
-
 */
-
-
-
-
-
-
 
 int main(void)
 {
@@ -104,8 +88,6 @@ int main(void)
 	free(buf);
 	free(token);
 	free(pathnameoffile);
-	
-	
 	*/
 	return (0);
 }
