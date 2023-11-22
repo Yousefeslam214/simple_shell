@@ -4,6 +4,7 @@ void _exitt(char **arv)
 {
 	int exit_status = 0;
 
+
 	if (arv[1])
 	{
 		exit_status = atoi(arv[1]);
