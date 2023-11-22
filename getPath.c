@@ -5,7 +5,9 @@ char *_getenv(const char *name)
 	int i = 0,j = 0;
 	char *str;
 	if(!name)
+	{
 		return (NULL);
+	}
 	while (environ[i])
 	{
 		if(name[j] == environ[i][j])
@@ -29,7 +31,7 @@ char *_getenv(const char *name)
 
 list_path *linkpath(char *path)
 {
-	char *token, *copy_path = strdup(path);
+	char *token, *copy_path = _strdup(path);
 	list_path *head = NULL;
 
 	token = strtok(copy_path, ":");
@@ -38,27 +40,27 @@ list_path *linkpath(char *path)
 		head = add_node_to_end(&head, token);
 		token = strtok(NULL, ":");
 	}
+	free(copy_path);
+	/*
+	don't do it
+	free(token);
+	free(path);
+	*/
 	return (head);
 }
 
-list_path *add_node_to_end(list_path **head,char * token)
+list_path *add_node_to_end(list_path **head ,char * token)
 {
 	list_path *new_path = (list_path *)malloc(sizeof(list_path));
 	list_path *temp;
 	if (!token || !new_path)
+	{
+		/*free_list(new_path);*/
 		return (NULL);
-	new_path->directory = strdup(token);
-
-
-
-
-
+	}
+	new_path->directory = _strdup(token);
 	/*new_path->path = '\0';*/
 	new_path->path = NULL;
-
-
-
-
 	if (!*head)
 		*head = new_path;
 	else
@@ -70,61 +72,34 @@ list_path *add_node_to_end(list_path **head,char * token)
 		}
 		temp->path = new_path;
 	}
+	/*
+	don't do it
+	free_list(new_path);
+	free(token);
+	free_list(temp);
+	*/
 	return (*head);
 }
 
-
-
-
-
-char *_which(char *filename, list_path *head)
+char *_which(char *name, list_path *head)
 {
-	struct stat st;
-	char *string;
+	struct stat sta;
+	char *str;
+	list_path *temp = head;
 
-	list_path *tmp = head;
-
-	while (tmp)
+	while (temp)
 	{
-
-		string = concat_all(tmp->directory, "/", filename);
-		if (stat(string, &st) == 0)
-		{
-			return (string);
-		}
-		/*free(string);*/
-		tmp = tmp->path;
+		str = concat_all(temp->directory, "/", name);
+		if (stat(str, &sta) == 0)
+			return (str);
+		free(str);
+		temp = temp->path;
 	}
-
+	/*
+	free_list(head);
+	don't do this
+	free_list(tmp);
+	*/
 	return (NULL);
-}
-char *concat_all(char *name, char *sep, char *value)
-{
-	char *result;
-	int l1, l2, l3, i, k;
-
-	l1 = strlen(name);
-	l2 = strlen(sep);
-	l3 = strlen(value);
-
-	result = malloc(l1 + l2 + l3 + 1);
-	if (!result)
-		return (NULL);
-
-	for (i = 0; name[i]; i++)
-		result[i] = name[i];
-	k = i;
-
-	for (i = 0; sep[i]; i++)
-		result[k + i] = sep[i];
-	k = k + i;
-
-	for (i = 0; value[i]; i++)
-		result[k + i] = value[i];
-	k = k + i;
-
-	result[k] = '\0';
-
-	return (result);
 }
 

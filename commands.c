@@ -22,10 +22,30 @@ void _exitt(char **arv)
 	free(arv);
 
 	exit(0);
+
+    int exit_status = 0,i = 0;
+
+    if (arv[1]) {
+        exit_status = atoi(arv[1]);
+        if (exit_status < 0) {
+            exit_status = 2;
+        }
+        freearg(arv);
+        exit(exit_status);
+    }
+	while (arv[i])
+	{
+		free(arv[i]);
+		i++;
+	}
+    free(arv);
+    exit(0);
+
 }
 void _env(char **arv __attribute__ ((unused)))
 {
 	char **env_var = environ;
+
 
 	while (*env_var)
 	{
@@ -33,13 +53,22 @@ void _env(char **arv __attribute__ ((unused)))
 		puts("\n");
 		env_var++;
 	}
+
+    while (*env_var) {
+        puts(*env_var);
+    	/*puts("\n");*/
+        env_var++;
+    }
+
 }
 void _setenv(char **argv)
 {
-	printf("ayo\n");
+	*argv = "yousef";
+	printf("argv\n");
 }
 void _unsetenv(char **argv)
 {
+	*argv = "yousef";
 	printf("ayo\n");
 }
 
