@@ -11,6 +11,7 @@ void _exitt(char **arv)
 		{
 			exit_status = 2;
 		}
+		
 		free(arv);
 		exit(exit_status);
 	}
