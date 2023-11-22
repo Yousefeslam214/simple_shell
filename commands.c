@@ -47,7 +47,6 @@ void _env(char **arv __attribute__ ((unused)))
 {
 	char **env_var = environ;
 
-
 	while (*env_var)
 	{
 		puts(*env_var);
