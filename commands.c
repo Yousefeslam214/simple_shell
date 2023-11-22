@@ -2,33 +2,37 @@
 
 void _exitt(char **arv)
 {
-    int exit_status = 0;
+	int exit_status = 0;
 
-    if (arv[1]) {
-        exit_status = atoi(arv[1]);
-        if (exit_status < 0) {
-            exit_status = 2;
-        }
-        free(arv);
-        exit(exit_status);
-    }
+	if (arv[1])
+	{
+		exit_status = atoi(arv[1]);
+		if (exit_status < 0)
+		{
+			exit_status = 2;
+		}
+		free(arv);
+		exit(exit_status);
+	}
 
-    for (int i = 0; arv[i]; i++) {
-        free(arv[i]);
-    }
-    free(arv);
+	for (int i = 0; arv[i]; i++)
+	{
+		free(arv[i]);
+	}
+	free(arv);
 
-    exit(0);
+	exit(0);
 }
 void _env(char **arv __attribute__ ((unused)))
 {
-    char **env_var = environ;
+	char **env_var = environ;
 
-    while (*env_var) {
-        puts(*env_var);
-    	puts("\n");
-        env_var++;
-    }
+	while (*env_var)
+	{
+		puts(*env_var);
+		puts("\n");
+		env_var++;
+	}
 }
 void _setenv(char **argv)
 {
@@ -57,15 +61,15 @@ void(*commands (char **argv))(char **argv)
 		j = 0;
 		if (cod[i].word[j] == argv[0][j])
 		{
-			for(j = 0; argv[0][j]; j++)
+			for (j = 0; argv[0][j]; j++)
 			{
 				if (cod[i].word[j] != (argv[0][j])){
 					break;
-					return(0);
+					return (0);
 				}
 			}
 			if (!argv[0][j] && !cod[i].word[j])
-				return(cod[i].func);
+			return(cod[i].func);
 		}
 	}
 	return (0);
