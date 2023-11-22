@@ -11,7 +11,7 @@ void _exitt(char **arv)
 		{
 			exit_status = 2;
 		}
-		
+
 		free(arv);
 		exit(exit_status);
 	}
@@ -21,7 +21,6 @@ void _exitt(char **arv)
 		free(arv[i]);
 	}
 	free(arv);
-
 	exit(0);
 
     int exit_status = 0,i = 0;
