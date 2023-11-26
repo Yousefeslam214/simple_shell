@@ -8,8 +8,8 @@ void endoffile(int len, char *buf)
 		if (isatty(STDIN_FILENO))
 		{
 			putchar('\n');
-			free(buf);
 		}
+		free(buf);
 		exit(0);
 	}
 }
@@ -67,27 +67,39 @@ int main(void)
 			pathnameoffile = _which((array[0]), head);
 			fun = commands(array);
 			if (fun)
-			{
+			{	
+				/*free(buf);
+				buf = NULL;*/
 				fun(array);
 			}
 			else if (!pathnameoffile)
 				run(array);
 			else if (pathnameoffile)
 			{
-				/*free(array[0]);*/
+				/*array[0] = NULL;
+				free(array[0]);
+				array[0] = NULL;*/
 				array[0] = pathnameoffile;
 				run(array);
 			}
 		}
 	i = 0;
+	/*if(buf != NULL)
+		*/
+	/*buf =NULL;
+	free(buf);
+	buf =NULL;*/
 	}
-	freearg(array);
-	free_list(head);
 	
+	freearg(array);
+	/*free(*array);*/
+	free_list(head);
+
+
 	/*
 	free(buf);
-	free(token);
 	free(pathnameoffile);
+	free(token);
 	*/
 	return (0);
 }

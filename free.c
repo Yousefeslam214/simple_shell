@@ -14,18 +14,24 @@ void *_realloc(void *ptr, unsigned int oldsize, unsigned int newsize)
 	if (newsize == 0 && ptr != NULL)
 	{
 		free(ptr);
+		ptr = NULL;
 		return (NULL);
 	}
 
 	news = (char *)malloc(newsize);
 	old = ptr;
 	if (news == NULL)
+	{
+		free(news);
+		news = NULL;
 		return (NULL);
+	}
 	if (newsize > oldsize)
 	{
 		for (i = 0; i < oldsize; i++)
 			news[i] = old[i];
 		free(ptr);
+		ptr = NULL;
 		for (i = oldsize; i < newsize; i++)
 			news[i] = '\0';
 	}
@@ -34,8 +40,10 @@ void *_realloc(void *ptr, unsigned int oldsize, unsigned int newsize)
 		for (i = 0; i < newsize; i++)
 			news[i] = old[i];
 		free(ptr);
+		ptr = NULL;
 	}
 	free(old);
+	old = NULL;
 	return (news);
 }
 
@@ -46,8 +54,10 @@ void freearg(char ** argv)
 	while (argv[i])
 	{
 		free(argv[i]);
+		argv[i] = NULL;
 	}
 	free(argv);
+	free(*argv);
 }
 
 void free_list(list_path *head)
@@ -56,9 +66,12 @@ void free_list(list_path *head)
 
 	while (head)
 	{
-		stor =  head->path;
+		stor = head->path;
 		free(head->directory);
 		free(head);
+		head->directory = NULL;
+		head = NULL;
 		head = stor;
 	}
+	free(head);
 }
