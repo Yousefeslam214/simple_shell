@@ -43,3 +43,5 @@
   </ul>
   <h2>External Commands</h2>
   <p>The shell can also execute external commands by searching for the executable in the directories specified in the PATH environment variable.</p>
+  <h2>License</h2>
+  <p>This project is for educational purposes only.</p>
