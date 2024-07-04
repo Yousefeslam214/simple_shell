@@ -38,6 +38,8 @@
     <li><code>setenv</code> - Set an environment variable.</li>
     <li><code>unsetenv</code> - Unset an environment variable.</li>
     <li><code>env</code> - Print the environment variables.</li>
+    <li><code>ls</code> - List Directory Contents.</li>
+    <li><code>ls -l</code> - List Directory Contents in Long Format.</li>
   </ul>
   <h2>External Commands</h2>
   <p>The shell can also execute external commands by searching for the executable in the directories specified in the PATH environment variable.</p>
